@@ -16,6 +16,6 @@ I am not responsible for your account. Please consider the potential risks befor
 | Auto Upgrade Mine         | ✅        |
 
 ## Settings
-Open project in visual studio and enter all query_id in data.txt file and build or start project
+Open project in visual studio and enter all query_id in data.txt file and build or start project ([Get Telegram MiniGame Query ID using Chrome](https://youtu.be/r0Ulqev-9M4))
 
 ![](http://visit.parselecom.com/Api/Visit/29/458797)
