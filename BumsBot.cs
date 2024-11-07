@@ -1,4 +1,3 @@
-﻿using System.Diagnostics;
 using System.Net.Http.Headers;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -18,7 +17,7 @@ namespace BumsBot
         {
             PubQuery = Query;
             var Login = BumsLogin().Result;
-            if (Login is not null)
+            if (Login != null)
             {
                 AccessToken = Login.Data.Token;
                 HasError = false;
@@ -37,7 +36,7 @@ namespace BumsBot
             var BAPI = new BumsApi(0, PubQuery.Auth, PubQuery.Index);
             var formContent = new FormUrlEncodedContent(new[] { new KeyValuePair<string, string>("invitationCode", ""), new KeyValuePair<string, string>("initData", PubQuery.Auth) });
             var httpResponse = await BAPI.BAPIPost($"https://api.bums.bot/miniapps/api/user/telegram_auth", formContent);
-            if (httpResponse is not null)
+            if (httpResponse != null)
             {
                 if (httpResponse.IsSuccessStatusCode)
                 {
@@ -54,7 +53,7 @@ namespace BumsBot
         {
             var BAPI = new BumsApi(1, AccessToken, PubQuery.Index);
             var httpResponse = await BAPI.BAPIGet($"https://api.bums.bot/miniapps/api/user_game_level/getGameInfo");
-            if (httpResponse is not null)
+            if (httpResponse != null)
             {
                 if (httpResponse.IsSuccessStatusCode)
                 {
@@ -72,7 +71,7 @@ namespace BumsBot
         {
             var BAPI = new BumsApi(1, AccessToken, PubQuery.Index);
             var httpResponse = await BAPI.BAPIPost($"https://api.bums.bot/miniapps/api/sign/sign", null);
-            if (httpResponse is not null)
+            if (httpResponse != null)
             {
                 if (httpResponse.IsSuccessStatusCode)
                 {
@@ -91,7 +90,7 @@ namespace BumsBot
             string hashCode = Tools.getMD5Hash(collectAmount.ToString() + collectSeqNo + "7be2a16a82054ee58398c5edb7ac4a5a");
             var formContent = new FormUrlEncodedContent(new[] { new KeyValuePair<string, string>("hashCode", hashCode), new KeyValuePair<string, string>("collectSeqNo", collectSeqNo.ToString()), new KeyValuePair<string, string>("collectAmount", collectAmount.ToString()) });
             var httpResponse = await BAPI.BAPIPost($"https://api.bums.bot/miniapps/api/user_game/collectCoin", formContent);
-            if (httpResponse is not null)
+            if (httpResponse != null)
             {
                 if (httpResponse.IsSuccessStatusCode)
                 {
@@ -114,7 +113,7 @@ namespace BumsBot
                 httpResponse = await client.GetAsync($"https://raw.githubusercontent.com/glad-tidings/BumsBot/refs/heads/main/tasks.json");
             }
             catch { }
-            if (httpResponse is not null)
+            if (httpResponse != null)
             {
                 if (httpResponse.IsSuccessStatusCode)
                 {
@@ -131,7 +130,7 @@ namespace BumsBot
         {
             var BAPI = new BumsApi(1, AccessToken, PubQuery.Index);
             var httpResponse = await BAPI.BAPIGet($"https://api.bums.bot/miniapps/api/task/lists");
-            if (httpResponse is not null)
+            if (httpResponse != null)
             {
                 if (httpResponse.IsSuccessStatusCode)
                 {
@@ -153,7 +152,7 @@ namespace BumsBot
             else
                 formContent = new FormUrlEncodedContent(new[] { new KeyValuePair<string, string>("id", id.ToString()), new KeyValuePair<string, string>("pwd", pwd) });
             var httpResponse = await BAPI.BAPIPost($"https://api.bums.bot/miniapps/api/task/finish_task", formContent);
-            if (httpResponse is not null)
+            if (httpResponse != null)
             {
                 if (httpResponse.IsSuccessStatusCode)
                 {
@@ -170,7 +169,7 @@ namespace BumsBot
         {
             var BAPI = new BumsApi(1, AccessToken, PubQuery.Index);
             var httpResponse = await BAPI.BAPIPost($"https://api.bums.bot/miniapps/api/mine/getMineLists", null);
-            if (httpResponse is not null)
+            if (httpResponse != null)
             {
                 if (httpResponse.IsSuccessStatusCode)
                 {
@@ -189,7 +188,7 @@ namespace BumsBot
             var BAPI = new BumsApi(1, AccessToken, PubQuery.Index);
             var formContent = new FormUrlEncodedContent(new[] { new KeyValuePair<string, string>("mineId", mineId.ToString()) });
             var httpResponse = await BAPI.BAPIPost($"https://api.bums.bot/miniapps/api/mine/upgrade", formContent);
-            if (httpResponse is not null)
+            if (httpResponse != null)
             {
                 if (httpResponse.IsSuccessStatusCode)
                 {
@@ -206,7 +205,7 @@ namespace BumsBot
         {
             var BAPI = new BumsApi(1, AccessToken, PubQuery.Index);
             var httpResponse = await BAPI.BAPIGet($"https://api.bums.bot/miniapps/api/mine/getMineLists");
-            if (httpResponse is not null)
+            if (httpResponse != null)
             {
                 if (httpResponse.IsSuccessStatusCode)
                 {
@@ -224,7 +223,7 @@ namespace BumsBot
             var BAPI = new BumsApi(1, AccessToken, PubQuery.Index);
             var formContent = new FormUrlEncodedContent(new[] { new KeyValuePair<string, string>("propId", propId.ToString()) });
             var httpResponse = await BAPI.BAPIPost($"https://api.bums.bot/miniapps/api/game_spin/Start", formContent);
-            if (httpResponse is not null)
+            if (httpResponse != null)
             {
                 if (httpResponse.IsSuccessStatusCode)
                 {
@@ -247,7 +246,7 @@ namespace BumsBot
                 httpResponse = await client.GetAsync($"https://raw.githubusercontent.com/glad-tidings/BumsBot/refs/heads/main/lottery.json");
             }
             catch { }
-            if (httpResponse is not null)
+            if (httpResponse != null)
             {
                 if (httpResponse.IsSuccessStatusCode)
                 {
@@ -264,7 +263,7 @@ namespace BumsBot
         {
             var BAPI = new BumsApi(1, AccessToken, PubQuery.Index);
             var httpResponse = await BAPI.BAPIGet($"https://api.bums.bot/miniapps/api/mine_active/getMineAcctiveInfo");
-            if (httpResponse is not null)
+            if (httpResponse != null)
             {
                 if (httpResponse.IsSuccessStatusCode)
                 {
@@ -282,7 +281,7 @@ namespace BumsBot
             var BAPI = new BumsApi(1, AccessToken, PubQuery.Index);
             var formContent = new FormUrlEncodedContent(new[] { new KeyValuePair<string, string>("cardIdStr", cardIdStr) });
             var httpResponse = await BAPI.BAPIPost($"https://api.bums.bot/miniapps/api/mine_active/JoinMineAcctive", formContent);
-            if (httpResponse is not null)
+            if (httpResponse != null)
             {
                 if (httpResponse.IsSuccessStatusCode)
                 {
@@ -299,7 +298,7 @@ namespace BumsBot
         {
             var BAPI = new BumsApi(1, AccessToken, PubQuery.Index);
             var httpResponse = await BAPI.BAPIGet($"https://api.bums.bot/miniapps/api/wallet/balance");
-            if (httpResponse is not null)
+            if (httpResponse != null)
             {
                 if (httpResponse.IsSuccessStatusCode)
                 {
@@ -316,7 +315,7 @@ namespace BumsBot
         {
             var BAPI = new BumsApi(1, AccessToken, PubQuery.Index);
             var httpResponse = await BAPI.BAPIPost($"https://api.bums.bot/miniapps/api/wallet/W70001To80001", null);
-            if (httpResponse is not null)
+            if (httpResponse != null)
             {
                 if (httpResponse.IsSuccessStatusCode)
                 {
@@ -334,7 +333,7 @@ namespace BumsBot
             var BAPI = new BumsApi(1, AccessToken, PubQuery.Index);
             var formContent = new FormUrlEncodedContent(new[] { new KeyValuePair<string, string>("type", @type) });
             var httpResponse = await BAPI.BAPIPost($"https://api.bums.bot/miniapps/api/user_game_level/upgradeLeve", formContent);
-            if (httpResponse is not null)
+            if (httpResponse != null)
             {
                 if (httpResponse.IsSuccessStatusCode)
                 {
@@ -347,5 +346,57 @@ namespace BumsBot
             return false;
         }
 
+        public async Task<BumsGangResponse?> BumsGangs()
+        {
+            var BAPI = new BumsApi(1, AccessToken, PubQuery.Index);
+            var formContent = new FormUrlEncodedContent([new KeyValuePair<string, string>("boostNum", 15.ToString()), new KeyValuePair<string, string>("powerNum", 35.ToString())]);
+            var httpResponse = await BAPI.BAPIPost($"https://api.bums.bot/miniapps/api/gang/gang_lists", formContent);
+            if (httpResponse != null)
+            {
+                if (httpResponse.IsSuccessStatusCode)
+                {
+                    var responseStream = await httpResponse.Content.ReadAsStreamAsync();
+                    var responseJson = await JsonSerializer.DeserializeAsync<BumsGangResponse>(responseStream);
+                    return responseJson;
+                }
+            }
+
+            return null;
+        }
+
+        public async Task<bool> BumsJoinGang()
+        {
+            var BAPI = new BumsApi(1, AccessToken, PubQuery.Index);
+            var formContent = new FormUrlEncodedContent([new KeyValuePair<string, string>("name", "gtbums")]);
+            var httpResponse = await BAPI.BAPIPost("https://api.bums.bot/miniapps/api/gang/gang_join", formContent);
+            if (httpResponse != null)
+            {
+                if (httpResponse.IsSuccessStatusCode)
+                {
+                    var responseStream = await httpResponse.Content.ReadAsStreamAsync();
+                    var responseJson = await JsonSerializer.DeserializeAsync<BumsPubResponse>(responseStream);
+                    return (responseJson?.Code == 0);
+                }
+            }
+
+            return false;
+        }
+
+        public async Task<bool> BumsLeaveGang()
+        {
+            var BAPI = new BumsApi(1, AccessToken, PubQuery.Index);
+            var httpResponse = await BAPI.BAPIGet("https://api.bums.bot/miniapps/api/gang/gang_leave");
+            if (httpResponse != null)
+            {
+                if (httpResponse.IsSuccessStatusCode)
+                {
+                    var responseStream = await httpResponse.Content.ReadAsStreamAsync();
+                    var responseJson = await JsonSerializer.DeserializeAsync<BumsPubResponse>(responseStream);
+                    return (responseJson?.Code == 0);
+                }
+            }
+
+            return false;
+        }
     }
 }
