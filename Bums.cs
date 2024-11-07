@@ -1,5 +1,3 @@
-﻿using System;
-using System.Collections.Generic;
 using System.Text.Json.Serialization;
 
 namespace BumsBot
@@ -382,5 +380,37 @@ namespace BumsBot
         public int FreezeAmount { get; set; }
         [JsonPropertyName("availableAmount")]
         public int AvailableAmount { get; set; }
+    }
+
+    public class BumsGangResponse
+    {
+        [JsonPropertyName("code")]
+        public int Code { get; set; }
+        [JsonPropertyName("msg")]
+        public string Msg { get; set; } = string.Empty;
+        [JsonPropertyName("data")]
+        public BumsGangData Data { get; set; } = new();
+    }
+
+    public class BumsGangData
+    {
+        [JsonPropertyName("myGang")]
+        public BumsGangDataMyGang MyGang { get; set; } = new();
+    }
+
+    public class BumsGangDataMyGang
+    {
+        [JsonPropertyName("gangId")]
+        public string GangId { get; set; } = string.Empty;
+        [JsonPropertyName("name")]
+        public string Name { get; set; } = string.Empty;
+        [JsonPropertyName("userCount")]
+        public int UserCount { get; set; }
+        [JsonPropertyName("power")]
+        public string Power { get; set; } = string.Empty;
+        [JsonPropertyName("boost")]
+        public int Boost { get; set; }
+        [JsonPropertyName("rank")]
+        public int Rank { get; set; }
     }
 }
