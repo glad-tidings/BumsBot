@@ -16,6 +16,9 @@ I am not responsible for your account. Please consider the potential risks befor
 | Auto Upgrade Mine         | ✅        |
 | Multi Proxy               | ✅        |
 
+## Releases
+[Download BOT](https://github.com/glad-tidings/BumsBot/releases)
+
 ## Settings
 Enter all query_id in data.txt file and add proxies in proxy.txt(e.g. socks5://10.10.10.10:1080)
 
