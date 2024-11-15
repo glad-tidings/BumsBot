@@ -1,4 +1,5 @@
-﻿using System.Net.Http.Headers;
+using System.Net;
+using System.Net.Http.Headers;
 
 namespace BumsBot
 {
@@ -7,9 +8,21 @@ namespace BumsBot
     {
         private readonly HttpClient client;
 
-        public BumsApi(int Mode, string queryID, int queryIndex)
+        public BumsApi(int Mode, string queryID, int queryIndex, ProxyType[] Proxy)
         {
-            client = new HttpClient() { Timeout = new TimeSpan(0, 0, 30) };
+            var FProxy = Proxy.Where(x => x.Index == queryIndex);
+            if (FProxy.Count() != 0)
+            {
+                if (!string.IsNullOrEmpty(FProxy.ElementAtOrDefault(0)?.Proxy))
+                {
+                    var handler = new HttpClientHandler() { Proxy = new WebProxy() { Address = new Uri(FProxy.ElementAtOrDefault(0)?.Proxy ?? string.Empty) } };
+                    client = new HttpClient(handler) { Timeout = new TimeSpan(0, 0, 30) };
+                }
+                else
+                    client = new HttpClient() { Timeout = new TimeSpan(0, 0, 30) };
+            }
+            else
+                client = new HttpClient() { Timeout = new TimeSpan(0, 0, 30) };
             client.DefaultRequestHeaders.CacheControl = new CacheControlHeaderValue() { NoCache = true, NoStore = true };
             if (Mode == 1)
                 client.DefaultRequestHeaders.Add("Authorization", $"Bearer {queryID}");
