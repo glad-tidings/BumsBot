@@ -1,0 +1,70 @@
+﻿[
+  {
+    "Index": 0,
+    "Proxy": ""
+  },
+  {
+    "Index": 1,
+    "Proxy": ""
+  },
+  {
+    "Index": 2,
+    "Proxy": ""
+  },
+  {
+    "Index": 3,
+    "Proxy": ""
+  },
+  {
+    "Index": 4,
+    "Proxy": ""
+  },
+  {
+    "Index": 5,
+    "Proxy": ""
+  },
+  {
+    "Index": 6,
+    "Proxy": ""
+  },
+  {
+    "Index": 7,
+    "Proxy": ""
+  },
+  {
+    "Index": 8,
+    "Proxy": ""
+  },
+  {
+    "Index": 9,
+    "Proxy": ""
+  },
+  {
+    "Index": 10,
+    "Proxy": ""
+  },
+  {
+    "Index": 11,
+    "Proxy": ""
+  },
+  {
+    "Index": 12,
+    "Proxy": ""
+  },
+  {
+    "Index": 13,
+    "Proxy": ""
+  },
+  {
+    "Index": 14,
+    "Proxy": ""
+  },
+  {
+    "Index": 15,
+    "Proxy": ""
+  },
+  {
+    "Index": 16,
+    "Proxy": ""
+  }
+]
