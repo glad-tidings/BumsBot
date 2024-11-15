@@ -17,7 +17,7 @@ I am not responsible for your account. Please consider the potential risks befor
 | Multi Proxy               | ✅        |
 
 ## Settings
-Open project in visual studio ([Download Visual Studio Express](https://visualstudio.microsoft.com/vs/express/)) and enter all query_id in data.txt file and add proxies in proxy.txt(e.g. socks5://10.10.10.10:1080) and build or start project ([Get Telegram MiniGame Query ID using Chrome](https://youtu.be/r0Ulqev-9M4))
+Enter all query_id in data.txt file and add proxies in proxy.txt(e.g. socks5://10.10.10.10:1080)
 
 ## QueryID Script
 Script to request query_id of all your Telegram accounts for any mini Telegram Bot App ==> [TelegramMiniAppQueryID](https://github.com/glad-tidings/TelegramMiniAppQueryID)
