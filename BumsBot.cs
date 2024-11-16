@@ -1,4 +1,4 @@
-using System.Net;
+﻿using System.Net;
 using System.Net.Http.Headers;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -19,6 +19,7 @@ namespace BumsBot
         public BumsBots(BumsBotQuery Query, ProxyType[] Proxy)
         {
             PubQuery = Query;
+            PubQuery.Auth = GetQuery();
             PubProxy = Proxy;
             IPAddress = GetIP().Result;
             var Login = BumsLogin().Result;
@@ -34,6 +35,15 @@ namespace BumsBot
                 HasError = true;
                 ErrorMessage = "login failed";
             }
+        }
+
+        private string GetQuery()
+        {
+            string query;
+            TelegramMiniApp.WebView vw = new(PubQuery.API_ID, PubQuery.API_HASH, PubQuery.Name, PubQuery.Phone, "bums_ton_bot", "https://app.bums.bot/");
+            vw.Get_tgWebAppData(out query);
+
+            return query;
         }
 
         private async Task<string> GetIP()

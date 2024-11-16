@@ -1,8 +1,10 @@
 ﻿[
       {
         "Index": 0,
-        "Name": "Account 1",
-        "Auth": "query_id of Account 1",
+        "Name": "Account1",
+        "API_ID": "8086441",
+        "API_HASH": "2a305482a93b5a762d2acd4be90dd00f",
+        "Phone": "+989188733476",
         "Active": true,
         "DailyReward": true,
         "FriendBonus": true,
@@ -23,8 +25,10 @@
       },
       {
         "Index": 1,
-        "Name": "Account 2",
-        "Auth": "query_id of Account 2",
+        "Name": "Account2",
+        "API_ID": "8086441",
+        "API_HASH": "2a305482a93b5a762d2acd4be90dd00f",
+        "Phone": "+989981683476",
         "Active": true,
         "DailyReward": true,
         "FriendBonus": true,

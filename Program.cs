@@ -1,4 +1,4 @@
-using System.Text.Json;
+﻿using System.Text.Json;
 
 namespace BumsBot
 {
@@ -31,17 +31,48 @@ namespace BumsBot
 
         static void Main()
         {
-            Console.WriteLine("----------------------- Bums Bot Starting -----------------------");
+            Console.WriteLine("  ____                      ____   ___ _____ \r\n | __ ) _   _ _ __ ___  ___| __ ) / _ \\_   _|\r\n |  _ \\| | | | '_ ` _ \\/ __|  _ \\| | | || |  \r\n | |_) | |_| | | | | | \\__ \\ |_) | |_| || |  \r\n |____/ \\__,_|_| |_| |_|___/____/ \\___/ |_|  \r\n                                             ");
             Console.WriteLine();
+            Console.WriteLine("Github: https://github.com/glad-tidings/BumsBot");
+            mainMenu:
+            Console.WriteLine();
+            Console.Write("Select an option:\n1. Run bot\n2. Create session\n> ");
+            string? opt = Console.ReadLine();
 
             var BumsQueries = LoadQuery();
             proxies = LoadProxy();
 
-            foreach (var Query in BumsQueries ?? [])
+            if (opt != null)
             {
-                var BotThread = new Thread(() => BumsThread(Query)); BotThread.Start();
-                Thread.Sleep(60000);
+                if (opt == "1")
+                {
+                    foreach (var Query in BumsQueries ?? [])
+                    {
+                        var BotThread = new Thread(() => BumsThread(Query)); BotThread.Start();
+                        Thread.Sleep(60000);
+                    }
+                }
+                else
+                {
+                    foreach (var Query in BumsQueries ?? [])
+                    {
+                        if (!File.Exists(@$"sessions\{Query.Name}.session"))
+                        {
+                            Console.WriteLine();
+                            Console.WriteLine($"Create session for account {Query.Name} ({Query.Phone})");
+                            TelegramMiniApp.WebView vw = new(Query.API_ID, Query.API_HASH, Query.Name, Query.Phone, "", "");
+                            if (vw.Save_Session())
+                                Console.WriteLine("Session created");
+                            else
+                                Console.WriteLine("Create session failed");
+                        }
+                    }
+
+                    goto mainMenu;
+                }
             }
+
+            Console.ReadLine();
         }
 
         public async static void BumsThread(BumsBotQuery Query)
