@@ -34,7 +34,6 @@ namespace BumsBot
             Console.WriteLine("  ____                      ____   ___ _____ \r\n | __ ) _   _ _ __ ___  ___| __ ) / _ \\_   _|\r\n |  _ \\| | | | '_ ` _ \\/ __|  _ \\| | | || |  \r\n | |_) | |_| | | | | | \\__ \\ |_) | |_| || |  \r\n |____/ \\__,_|_| |_| |_|___/____/ \\___/ |_|  \r\n                                             ");
             Console.WriteLine();
             Console.WriteLine("Github: https://github.com/glad-tidings/BumsBot");
-            mainMenu:
             Console.WriteLine();
             Console.Write("Select an option:\n1. Run bot\n2. Create session\n> ");
             string? opt = Console.ReadLine();
@@ -68,7 +67,7 @@ namespace BumsBot
                         }
                     }
 
-                    goto mainMenu;
+                    Environment.Exit(0);
                 }
             }
 
