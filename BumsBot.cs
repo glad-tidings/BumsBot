@@ -39,11 +39,15 @@ namespace BumsBot
 
         private string GetQuery()
         {
-            string query;
             TelegramMiniApp.WebView vw = new(PubQuery.API_ID, PubQuery.API_HASH, PubQuery.Name, PubQuery.Phone, "bums_ton_bot", "https://app.bums.bot/");
-            vw.Get_tgWebAppData(out query);
+            string url = vw.Get_URL().Result;
 
-            return query;
+            if (url != string.Empty)
+            {
+                return url.Split(new string[] { "tgWebAppData=" }, StringSplitOptions.None)[0].Split(new string[] { "&tgWebAppVersion" }, StringSplitOptions.None)[0];
+            }
+
+            return string.Empty;
         }
 
         private async Task<string> GetIP()

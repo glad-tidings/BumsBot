@@ -60,7 +60,7 @@ namespace BumsBot
                             Console.WriteLine();
                             Console.WriteLine($"Create session for account {Query.Name} ({Query.Phone})");
                             TelegramMiniApp.WebView vw = new(Query.API_ID, Query.API_HASH, Query.Name, Query.Phone, "", "");
-                            if (vw.Save_Session())
+                            if (vw.Save_Session().Result)
                                 Console.WriteLine("Session created");
                             else
                                 Console.WriteLine("Create session failed");
