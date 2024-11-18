@@ -352,7 +352,7 @@ namespace BumsBot
                     syncRND = RND.Next(Query.NightSleep[0], Query.NightSleep[1]);
                 else
                     syncRND = RND.Next(Query.DaySleep[0], Query.DaySleep[1]);
-                Log.Show("Blum", Query.Name, $"sync sleep '{Convert.ToInt32(syncRND / 3600d)}h {Convert.ToInt32(syncRND % 3600 / 60d)}m {syncRND % 60}s'", ConsoleColor.Yellow);
+                Log.Show("Bums", Query.Name, $"sync sleep '{Convert.ToInt32(syncRND / 3600d)}h {Convert.ToInt32(syncRND % 3600 / 60d)}m {syncRND % 60}s'", ConsoleColor.Yellow);
                 Thread.Sleep(syncRND * 1000);
             }
         }
