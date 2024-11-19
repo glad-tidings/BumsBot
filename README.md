@@ -30,4 +30,4 @@ USDT(TRC20): TRjdnBWpS1xT4a2oKQdFsM3AAc6TxVmqGZ
 TON: UQBmpnet6lYCLXObDwJLitDuMcPIocJIKVxg6pLvaFv5fRmO
 ```
 
-![](http://visit.parselecom.com/Api/Visit/29/458797)
+![](http://visit.parselecom.com/Api/Visit/glad-tidings/BumsBot/458797)
