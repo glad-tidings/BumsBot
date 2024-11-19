@@ -420,6 +420,50 @@ public class BumsGangDataMyGang
     public int Rank { get; set; }
 }
 
+public class BumsMysteryBoxResponse
+{
+    [JsonPropertyName("code")]
+    public int Code { get; set; }
+    [JsonPropertyName("msg")]
+    public string Msg { get; set; }
+    [JsonPropertyName("data")]
+    public List<BumsMysteryBoxData>? Data { get; set; }
+}
+
+public class BumsMysteryBoxData
+{
+    [JsonPropertyName("id")]
+    public string Id { get; set; } = string.Empty;
+    [JsonPropertyName("title")]
+    public string Title { get; set; } = string.Empty;
+    [JsonPropertyName("propId")]
+    public int PropId { get; set; }
+    [JsonPropertyName("sellLists")]
+    public List<BumsMysteryBoxDataSellLists>? SellLists { get; set; }
+    [JsonPropertyName("isBuy")]
+    public bool IsBuy { get; set; }
+    [JsonPropertyName("toDayUse")]
+    public bool ToDayUse { get; set; }
+    [JsonPropertyName("toDayMaxUseNum")]
+    public int ToDayMaxUseNum { get; set; }
+    [JsonPropertyName("toDayNowUseNum")]
+    public int ToDayNowUseNum { get; set; }
+    [JsonPropertyName("isAllowBuy")]
+    public bool IsAllowBuy { get; set; }
+}
+
+public class BumsMysteryBoxDataSellLists
+{
+    [JsonPropertyName("id")]
+    public string Id { get; set; } = string.Empty;
+    [JsonPropertyName("payMethod")]
+    public int PayMethod { get; set; }
+    [JsonPropertyName("oldAmount")]
+    public double OldAmount { get; set; }
+    [JsonPropertyName("newAmount")]
+    public double NewAmount { get; set; }
+}
+
 public class ProxyType
 {
     [JsonPropertyName("Index")]

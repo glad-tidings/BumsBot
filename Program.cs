@@ -1,4 +1,5 @@
-﻿using System.Text.Json;
+﻿using Microsoft.VisualBasic;
+using System.Text.Json;
 
 namespace BumsBot
 {
@@ -88,12 +89,12 @@ namespace BumsBot
                         Log.Show("Bums", Query.Name, $"my ip '{Bot.IPAddress}'", ConsoleColor.White);
                         Log.Show("Bums", Query.Name, $"login successfully.", ConsoleColor.Green);
                         var Sync = await Bot.BumsGameInfo();
-                        if (Sync is not null)
+                        if (Sync != null)
                         {
                             Log.Show("Bums", Query.Name, $"synced successfully. B<{Sync.Data.GameInfo.Coin}> L<{Sync.Data.GameInfo.Level}> E<{Sync.Data.GameInfo.EnergySurplus}> P<{Sync.Data.MineInfo.MinePower}> T<{Sync.Data.GameInfo.Experience}>", ConsoleColor.Blue);
 
                             var gang = await Bot.BumsGangs();
-                            if (gang is not null)
+                            if (gang != null)
                             {
                                 if (gang.Data?.MyGang?.GangId != "1854507053120028672")
                                 {
@@ -134,7 +135,7 @@ namespace BumsBot
                             if (Query.FriendBonus)
                             {
                                 var friends = await Bot.BumsBalance();
-                                if (friends is not null)
+                                if (friends != null)
                                 {
                                     var w7001 = friends.Data.Lists.Where(x => x.Id == 70001);
                                     if (w7001.Count() != 0)
@@ -176,7 +177,7 @@ namespace BumsBot
                             if (Query.Task)
                             {
                                 var tasks = await Bot.BumsTasks();
-                                if (tasks is not null)
+                                if (tasks != null)
                                 {
                                     foreach (var task in tasks.Data.Lists.Where(x => x.TaskType == "normal" & x.IsFinish == 0 & x.Id != 38 & x.Name != "Boost channel" & x.Name != "Score $BALLS in PiggyBank" & x.Name != "Dunk and earn an Airdrop!"))
                                     {
@@ -191,7 +192,7 @@ namespace BumsBot
                                     }
 
                                     var taskAnswers = await Bot.BumsAnswers();
-                                    if (taskAnswers is not null)
+                                    if (taskAnswers != null)
                                     {
                                         foreach (var task in tasks.Data.Lists.Where(x => x.TaskType == "pwd" & x.IsFinish == 0))
                                         {
@@ -215,12 +216,12 @@ namespace BumsBot
                             if (Query.Lottery)
                             {
                                 var lottery = await Bot.BumsLottery();
-                                if (lottery is not null)
+                                if (lottery != null)
                                 {
                                     if (lottery.Data.ResultNum > 0)
                                     {
                                         var lotteryAnswer = await Bot.BumsLotteryAnswer();
-                                        if (lotteryAnswer is not null)
+                                        if (lotteryAnswer != null)
                                         {
                                             if (lotteryAnswer.Expire.ToLocalTime() > DateTime.Now)
                                             {
@@ -239,16 +240,21 @@ namespace BumsBot
 
                             if (Query.Spin)
                             {
-                                var spins = await Bot.BumsSpins();
-                                if (spins is not null)
+                                var spins = await Bot.BumsMysteryBox();
+                                if (spins != null)
                                 {
-                                    foreach (var spin in spins.Data.Where(x => x.PropId == 500010001L & x.IsAllowBuy == true & x.ToDayUse == false))
+                                    foreach (var spin in spins.Data?.Where(x => x.PropId == 500010001 & x.IsBuy == false & x.IsAllowBuy == true & x.ToDayUse == false & x.ToDayMaxUseNum > x.ToDayNowUseNum & x.SellLists[0].OldAmount == 0d & x.SellLists[0].NewAmount == 0d) ?? [])
                                     {
-                                        bool startSpin = await Bot.BumsStartSpin((int)spin.PropId);
-                                        if (startSpin)
-                                            Log.Show("Bums", Query.Name, $"spin '{spin.Title}' started", ConsoleColor.Green);
-                                        else
-                                            Log.Show("Bums", Query.Name, $"start spin '{spin.Title}' failed", ConsoleColor.Red);
+                                        bool orderSpin = await Bot.BumsCreateGptPayOrder(Convert.ToInt64(spin.SellLists?[0].Id));
+                                        if (orderSpin)
+                                        {
+                                            Thread.Sleep(2000);
+                                            bool startSpin = await Bot.BumsStartSpin(spin.PropId);
+                                            if (startSpin)
+                                                Log.Show("Bums", Query.Name, $"spin '{spin.Title}' started", ConsoleColor.Green);
+                                            else
+                                                Log.Show("Bums", Query.Name, $"start spin '{spin.Title}' failed", ConsoleColor.Red);
+                                        }
 
                                         int eachspinRND = RND.Next(Query.SpinSleep[0], Query.SpinSleep[1]);
                                         Thread.Sleep(eachspinRND * 1000);
@@ -312,7 +318,7 @@ namespace BumsBot
                             if (Query.UpgradeMine)
                             {
                                 var mines = await Bot.BumsMines();
-                                if (mines is not null)
+                                if (mines != null)
                                 {
                                     foreach (var mine in mines.Data.Lists.Where(x => x.Status == 1 & x.NextLevelCost < Sync?.Data.GameInfo.Coin / 50d).OrderBy(x => x.NextLevelCost))
                                     {
@@ -336,7 +342,7 @@ namespace BumsBot
                             Log.Show("Bums", Query.Name, $"synced failed", ConsoleColor.Red);
 
                         Sync = await Bot.BumsGameInfo();
-                        if (Sync is not null)
+                        if (Sync != null)
                             Log.Show("Bums", Query.Name, $"B<{Sync.Data.GameInfo.Coin}> L<{Sync.Data.GameInfo.Level}> E<{Sync.Data.GameInfo.EnergySurplus}> P<{Sync.Data.MineInfo.MinePower}> T<{Sync.Data.GameInfo.Experience}>", ConsoleColor.Blue);
                     }
                     else
