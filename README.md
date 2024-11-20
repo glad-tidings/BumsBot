@@ -22,7 +22,10 @@ I am not responsible for your account. Please consider the potential risks befor
 [Download BOT](https://github.com/glad-tidings/BumsBot/releases)
 
 ## Settings
-Enter all account phone number in data.txt file and add proxies in proxy.txt(e.g. socks5://10.10.10.10:1080)
+Enter all account phone number and api_id and api_hash in data.txt file and add proxies in proxy.txt(e.g. socks5://10.10.10.10:1080)
+
+## Telegram API
+You can get api_id and api_hash from [Telegram API](https://my.telegram.org)
 
 ## ☕Buy me a coffee
 ```
