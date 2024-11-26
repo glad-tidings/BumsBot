@@ -243,18 +243,13 @@ namespace BumsBot
                                 var spins = await Bot.BumsMysteryBox();
                                 if (spins != null)
                                 {
-                                    foreach (var spin in spins.Data?.Where(x => x.PropId == 500010001 & x.IsBuy == false & x.IsAllowBuy == true & x.ToDayUse == false & x.ToDayMaxUseNum > x.ToDayNowUseNum & x.SellLists[0].OldAmount == 0d & x.SellLists[0].NewAmount == 0d) ?? [])
+                                    foreach (var spin in spins.Data?.Where(x => x.PropId == 500010001 & x.IsBuy == false & x.IsAllowBuy == true & x.ToDayUse == false & x.ToDayMaxUseNum > x.ToDayNowUseNum) ?? [])
                                     {
-                                        bool orderSpin = await Bot.BumsCreateGptPayOrder(Convert.ToInt64(spin.SellLists?[0].Id));
-                                        if (orderSpin)
-                                        {
-                                            Thread.Sleep(2000);
-                                            bool startSpin = await Bot.BumsStartSpin(spin.PropId);
-                                            if (startSpin)
-                                                Log.Show("Bums", Query.Name, $"spin '{spin.Title}' started", ConsoleColor.Green);
-                                            else
-                                                Log.Show("Bums", Query.Name, $"start spin '{spin.Title}' failed", ConsoleColor.Red);
-                                        }
+                                        bool startSpin = await Bot.BumsStartSpin(spin.PropId);
+                                        if (startSpin)
+                                            Log.Show("Bums", Query.Name, $"spin '{spin.Title}' started", ConsoleColor.Green);
+                                        else
+                                            Log.Show("Bums", Query.Name, $"start spin '{spin.Title}' failed", ConsoleColor.Red);
 
                                         int eachspinRND = RND.Next(Query.SpinSleep[0], Query.SpinSleep[1]);
                                         Thread.Sleep(eachspinRND * 1000);
