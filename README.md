@@ -25,7 +25,7 @@ I am not responsible for your account. Please consider the potential risks befor
 Enter all account phone numbers, along with the api_id and api_hash, in the data.txt file. Additionally, add proxies in the proxy.txt file (e.g., socks5://10.10.10.10:1080).
 
 ## Run
-After entering all accounts, run the executable file and select 'Create Session.' Once all sessions are created, select 'Run Bot.
+After entering all accounts, run the executable file and select 'Create Session' Once all sessions are created, select 'Run Bot'.
 
 ## Telegram API
 You can get api_id and api_hash from [Telegram API](https://my.telegram.org)
