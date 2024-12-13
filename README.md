@@ -1,5 +1,5 @@
 # BumsBot
-BumsBot Auto Farm
+BumsBot an automated farming tool
 
 ## ⚠️Warning
 I am not responsible for your account. Please consider the potential risks before using this bot.
@@ -22,7 +22,10 @@ I am not responsible for your account. Please consider the potential risks befor
 [Download BOT](https://github.com/glad-tidings/BumsBot/releases)
 
 ## Settings
-Enter all account phone number and api_id and api_hash in data.txt file and add proxies in proxy.txt(e.g. socks5://10.10.10.10:1080)
+Enter all account phone numbers, along with the api_id and api_hash, in the data.txt file. Additionally, add proxies in the proxy.txt file (e.g., socks5://10.10.10.10:1080).
+
+## Run
+After entering all accounts, run the executable file and select 'Create Session.' Once all sessions are created, select 'Run Bot.
 
 ## Telegram API
 You can get api_id and api_hash from [Telegram API](https://my.telegram.org)
