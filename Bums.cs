@@ -88,7 +88,7 @@ namespace BumsBot
         [JsonPropertyName("mineInfo")]
         public BumsGameInfoDataMineInfo MineInfo { get; set; } = new();
         [JsonPropertyName("propInfo")]
-        public List<BumsGameInfoDataPropInfo> PropInfo { get; set; } = new();
+        public List<BumsGameInfoDataPropInfo> PropInfo { get; set; } = [];
     }
 
     public class BumsGameInfoDataUserInfo
@@ -116,7 +116,7 @@ namespace BumsBot
         [JsonPropertyName("experience")]
         public string Experience { get; set; } = string.Empty;
         [JsonPropertyName("coin")]
-        public int Coin { get; set; }
+        public long Coin { get; set; }
         [JsonPropertyName("energySurplus")]
         public int EnergySurplus { get; set; }
         [JsonPropertyName("level")]
@@ -140,7 +140,7 @@ namespace BumsBot
         [JsonPropertyName("recovery")]
         public BumsGameInfoDataTapInfoSub Recovery { get; set; } = new();
         [JsonPropertyName("tap")]
-        public BumsGameInfoDataTapInfoSub Tap { get; set; }
+        public BumsGameInfoDataTapInfoSub Tap { get; set; } = new();
         [JsonPropertyName("bonusChance")]
         public BumsGameInfoDataTapInfoSub BonusChance { get; set; } = new();
         [JsonPropertyName("bonusRatio")]
@@ -344,7 +344,7 @@ namespace BumsBot
         [JsonPropertyName("code")]
         public int Code { get; set; }
         [JsonPropertyName("msg")]
-        public string Msg { get; set; } = string.Empty;
+        public string Msg { get; set; }
         [JsonPropertyName("data")]
         public BumsJoinLotteryData Data { get; set; } = new();
     }
@@ -384,96 +384,96 @@ namespace BumsBot
         [JsonPropertyName("freezeAmount")]
         public int FreezeAmount { get; set; }
         [JsonPropertyName("availableAmount")]
-        public int AvailableAmount { get; set; }
+        public long AvailableAmount { get; set; }
     }
-}
 
-public class BumsGangResponse
-{
-    [JsonPropertyName("code")]
-    public int Code { get; set; }
-    [JsonPropertyName("msg")]
-    public string Msg { get; set; } = string.Empty;
-    [JsonPropertyName("data")]
-    public BumsGangData? Data { get; set; }
-}
+    public class BumsGangResponse
+    {
+        [JsonPropertyName("code")]
+        public int Code { get; set; }
+        [JsonPropertyName("msg")]
+        public string Msg { get; set; } = string.Empty;
+        [JsonPropertyName("data")]
+        public BumsGangData Data { get; set; } = new();
+    }
 
-public class BumsGangData
-{
-    [JsonPropertyName("myGang")]
-    public BumsGangDataMyGang? MyGang { get; set; }
-}
+    public class BumsGangData
+    {
+        [JsonPropertyName("myGang")]
+        public BumsGangDataMyGang MyGang { get; set; } = new();
+    }
 
-public class BumsGangDataMyGang
-{
-    [JsonPropertyName("gangId")]
-    public string GangId { get; set; } = string.Empty;
-    [JsonPropertyName("name")]
-    public string Name { get; set; } = string.Empty;
-    [JsonPropertyName("userCount")]
-    public int UserCount { get; set; }
-    [JsonPropertyName("power")]
-    public string Power { get; set; } = string.Empty;
-    [JsonPropertyName("boost")]
-    public int Boost { get; set; }
-    [JsonPropertyName("rank")]
-    public int Rank { get; set; }
-}
+    public class BumsGangDataMyGang
+    {
+        [JsonPropertyName("gangId")]
+        public string GangId { get; set; } = string.Empty;
+        [JsonPropertyName("name")]
+        public string Name { get; set; } = string.Empty;
+        [JsonPropertyName("userCount")]
+        public int UserCount { get; set; }
+        [JsonPropertyName("power")]
+        public string Power { get; set; } = string.Empty;
+        [JsonPropertyName("boost")]
+        public int Boost { get; set; }
+        [JsonPropertyName("rank")]
+        public int Rank { get; set; }
+    }
 
-public class BumsMysteryBoxResponse
-{
-    [JsonPropertyName("code")]
-    public int Code { get; set; }
-    [JsonPropertyName("msg")]
-    public string Msg { get; set; }
-    [JsonPropertyName("data")]
-    public List<BumsMysteryBoxData>? Data { get; set; }
-}
+    public class BumsMysteryBoxResponse
+    {
+        [JsonPropertyName("code")]
+        public int Code { get; set; }
+        [JsonPropertyName("msg")]
+        public string Msg { get; set; } = string.Empty;
+        [JsonPropertyName("data")]
+        public List<BumsMysteryBoxData> Data { get; set; } = new();
+    }
 
-public class BumsMysteryBoxData
-{
-    [JsonPropertyName("id")]
-    public string Id { get; set; } = string.Empty;
-    [JsonPropertyName("title")]
-    public string Title { get; set; } = string.Empty;
-    [JsonPropertyName("propId")]
-    public int PropId { get; set; }
-    [JsonPropertyName("sellLists")]
-    public List<BumsMysteryBoxDataSellLists>? SellLists { get; set; }
-    [JsonPropertyName("isBuy")]
-    public bool IsBuy { get; set; }
-    [JsonPropertyName("toDayUse")]
-    public bool ToDayUse { get; set; }
-    [JsonPropertyName("toDayMaxUseNum")]
-    public int ToDayMaxUseNum { get; set; }
-    [JsonPropertyName("toDayNowUseNum")]
-    public int ToDayNowUseNum { get; set; }
-    [JsonPropertyName("isAllowBuy")]
-    public bool IsAllowBuy { get; set; }
-}
+    public class BumsMysteryBoxData
+    {
+        [JsonPropertyName("id")]
+        public string Id { get; set; } = string.Empty;
+        [JsonPropertyName("title")]
+        public string Title { get; set; } = string.Empty;
+        [JsonPropertyName("propId")]
+        public int PropId { get; set; }
+        [JsonPropertyName("sellLists")]
+        public List<BumsMysteryBoxDataSellLists> SellLists { get; set; } = [];
+        [JsonPropertyName("isBuy")]
+        public bool IsBuy { get; set; }
+        [JsonPropertyName("toDayUse")]
+        public bool ToDayUse { get; set; }
+        [JsonPropertyName("toDayMaxUseNum")]
+        public int ToDayMaxUseNum { get; set; }
+        [JsonPropertyName("toDayNowUseNum")]
+        public int ToDayNowUseNum { get; set; }
+        [JsonPropertyName("isAllowBuy")]
+        public bool IsAllowBuy { get; set; }
+    }
 
-public class BumsMysteryBoxDataSellLists
-{
-    [JsonPropertyName("id")]
-    public string Id { get; set; } = string.Empty;
-    [JsonPropertyName("payMethod")]
-    public int PayMethod { get; set; }
-    [JsonPropertyName("oldAmount")]
-    public double OldAmount { get; set; }
-    [JsonPropertyName("newAmount")]
-    public double NewAmount { get; set; }
-}
+    public class BumsMysteryBoxDataSellLists
+    {
+        [JsonPropertyName("id")]
+        public string Id { get; set; } = string.Empty;
+        [JsonPropertyName("payMethod")]
+        public int PayMethod { get; set; }
+        [JsonPropertyName("oldAmount")]
+        public double OldAmount { get; set; }
+        [JsonPropertyName("newAmount")]
+        public double NewAmount { get; set; }
+    }
 
-public class ProxyType
-{
-    [JsonPropertyName("Index")]
-    public int Index { get; set; }
-    [JsonPropertyName("Proxy")]
-    public string Proxy { get; set; } = string.Empty;
-}
+    public class ProxyType
+    {
+        [JsonPropertyName("Index")]
+        public int Index { get; set; }
+        [JsonPropertyName("Proxy")]
+        public string Proxy { get; set; } = string.Empty;
+    }
 
-public class Httpbin
-{
-    [JsonPropertyName("origin")]
-    public string Origin { get; set; } = string.Empty;
+    public class Httpbin
+    {
+        [JsonPropertyName("origin")]
+        public string Origin { get; set; } = string.Empty;
+    }
 }

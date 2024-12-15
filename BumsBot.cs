@@ -19,15 +19,24 @@ namespace BumsBot
         public BumsBots(BumsBotQuery Query, ProxyType[] Proxy)
         {
             PubQuery = Query;
-            PubQuery.Auth = GetSession();
             PubProxy = Proxy;
             IPAddress = GetIP().Result;
-            var Login = BumsLogin().Result;
-            if (Login != null)
+            PubQuery.Auth = GetSession();
+            if (!string.IsNullOrEmpty(PubQuery.Auth))
             {
-                AccessToken = Login.Data.Token;
-                HasError = false;
-                ErrorMessage = "";
+                var Login = BumsLogin().Result;
+                if (Login is not null)
+                {
+                    AccessToken = Login.Data.Token;
+                    HasError = false;
+                    ErrorMessage = "";
+                }
+                else
+                {
+                    AccessToken = string.Empty;
+                    HasError = true;
+                    ErrorMessage = "login failed";
+                }
             }
             else
             {
@@ -52,7 +61,7 @@ namespace BumsBot
         {
             HttpClient client;
             var FProxy = PubProxy.Where(x => x.Index == PubQuery.Index);
-            if (FProxy.Count() != 0)
+            if (FProxy.Any())
             {
                 if (!string.IsNullOrEmpty(FProxy.ElementAtOrDefault(0)?.Proxy))
                 {
@@ -275,10 +284,10 @@ namespace BumsBot
             return null;
         }
 
-        public async Task<BumsMysteryBoxResponse?> BumsMysteryBox()
+        public async Task<BumsMysteryBoxResponse?> BumsPropShop(string page)
         {
             var BAPI = new BumsApi(1, AccessToken, PubQuery.Index, PubProxy);
-            var httpResponse = await BAPI.BAPIGet($"https://api.bums.bot/miniapps/api/prop_shop/Lists?showPages=spin&page=1&pageSize=10");
+            var httpResponse = await BAPI.BAPIGet($"https://api.bums.bot/miniapps/api/prop_shop/Lists?showPages={page}&page=1&pageSize=10");
             if (httpResponse != null)
             {
                 if (httpResponse.IsSuccessStatusCode)

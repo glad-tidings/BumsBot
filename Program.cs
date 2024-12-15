@@ -1,5 +1,4 @@
-﻿using Microsoft.VisualBasic;
-using System.Text.Json;
+﻿using System.Text.Json;
 
 namespace BumsBot
 {
@@ -240,16 +239,34 @@ namespace BumsBot
 
                             if (Query.Spin)
                             {
-                                var spins = await Bot.BumsMysteryBox();
+                                var spins = await Bot.BumsPropShop("spin");
                                 if (spins != null)
                                 {
-                                    foreach (var spin in spins.Data?.Where(x => x.PropId == 500010001 & x.IsBuy == false & x.IsAllowBuy == true & x.ToDayUse == false & x.ToDayMaxUseNum > x.ToDayNowUseNum) ?? [])
+                                    foreach (var spin in spins.Data.Where(x => x.PropId == 500010001 & x.IsBuy == false & x.IsAllowBuy == true & x.ToDayUse == false & x.ToDayMaxUseNum > x.ToDayNowUseNum))
                                     {
                                         bool startSpin = await Bot.BumsStartSpin(spin.PropId);
                                         if (startSpin)
                                             Log.Show("Bums", Query.Name, $"spin '{spin.Title}' started", ConsoleColor.Green);
                                         else
                                             Log.Show("Bums", Query.Name, $"start spin '{spin.Title}' failed", ConsoleColor.Red);
+
+                                        int eachspinRND = RND.Next(Query.SpinSleep[0], Query.SpinSleep[1]);
+                                        Thread.Sleep(eachspinRND * 1000);
+                                    }
+                                }
+
+                                Thread.Sleep(3000);
+
+                                var expedition = await Bot.BumsPropShop("expedition");
+                                if (expedition is not null)
+                                {
+                                    foreach (var spin in spins.Data.Where(x => x.PropId == 200010001 & x.IsBuy == false & x.IsAllowBuy == true & x.ToDayUse == false & x.ToDayMaxUseNum > x.ToDayNowUseNum))
+                                    {
+                                        bool startSpin = await Bot.BumsStartSpin(spin.PropId);
+                                        if (startSpin)
+                                            Log.Show("Bums", Query.Name, $"expedition '{spin.Title}' started", ConsoleColor.Green);
+                                        else
+                                            Log.Show("Bums", Query.Name, $"start expedition '{spin.Title}' failed", ConsoleColor.Red);
 
                                         int eachspinRND = RND.Next(Query.SpinSleep[0], Query.SpinSleep[1]);
                                         Thread.Sleep(eachspinRND * 1000);
