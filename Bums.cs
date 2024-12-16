@@ -128,9 +128,9 @@ namespace BumsBot
         [JsonPropertyName("nextExperience")]
         public string NextExperience { get; set; } = string.Empty;
         [JsonPropertyName("todayCollegeCoin")]
-        public int TodayCollegeCoin { get; set; }
+        public long TodayCollegeCoin { get; set; }
         [JsonPropertyName("todayMaxCollegeCoin")]
-        public int TodayMaxCollegeCoin { get; set; }
+        public long TodayMaxCollegeCoin { get; set; }
     }
 
     public class BumsGameInfoDataTapInfo
