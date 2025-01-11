@@ -274,7 +274,7 @@ namespace BumsBot
         [JsonPropertyName("status")]
         public int Status { get; set; }
         [JsonPropertyName("nextLevelCost")]
-        public long NextLevelCost { get; set; }
+        public double NextLevelCost { get; set; }
         [JsonPropertyName("nextPerHourReward")]
         public string NextPerHourReward { get; set; } = string.Empty;
         [JsonPropertyName("limitText")]
