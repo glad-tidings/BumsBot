@@ -158,7 +158,7 @@ namespace BumsBot
         [JsonPropertyName("value")]
         public int Value { get; set; }
         [JsonPropertyName("nextCostCoin")]
-        public int NextCostCoin { get; set; }
+        public long NextCostCoin { get; set; }
         [JsonPropertyName("nextIncrease")]
         public int NextIncrease { get; set; }
     }
